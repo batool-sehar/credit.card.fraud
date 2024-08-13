@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Credit Card Fraud Detection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#cc-form {
+  width: 50%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#cc-number, #cc-exp, #cc-cvv {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+#detect-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#detect-btn:hover {
+  background-color: #3e8e41;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
+
+<body>
+  <h1>Credit Card Fraud Detection</h1>
+  <form id="cc-form">
+    <label for="cc-number">Credit Card Number:</label>
+    <input type="text" id="cc-number" placeholder="1234-5678-9012-3456">
+    <br>
+    <label for="cc-exp">Expiration Date:</label>
+    <input type="text" id="cc-exp" placeholder="MM/YY">
+    <br>
+    <label for="cc-cvv">CVV:</label>
+    <input type="text" id="cc-cvv" placeholder="123">
+    <br>
+    <button id="detect-btn">Detect</button>
+  </form>
+  <div id="result"></div>
+
+  <script src="script.js">
+    // Function to perform basic fraud detection simulation
+function simulateFraudDetection(cardNumber, amount) {
+    // Example: Simple check to simulate fraud detection
+    // You should replace this with actual fraud detection logic
+    if (amount > 1000) { // Example threshold for fraud detection
+        return "Transaction flagged as potentially fraudulent due to high amount.";
+    }
+    if (cardNumber.length < 16) { // Example check for invalid card number
+        return "Invalid credit card number.";
+    }
+    return "Transaction is valid.";
+}
+
+// Event listener for the form submission
+document.getElementById('creditCardForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const cardNumber = document.getElementById('cardNumber').value;
+    const amount = document.getElementById('transactionAmount').value;
+    const messageElement = document.getElementById('message');
+
+    // Perform fraud detection simulation
+    const result = simulateFraudDetection(cardNumber, amount);
+
+    messageElement.textContent = result;
+    messageElement.style.color = result.includes('fraudulent') ? 'red' : 'green';
+});
+
+  </script>
+</body>
+</html>
